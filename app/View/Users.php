@@ -8,18 +8,22 @@ class Users extends Main
     {
         $options = [
             'id' => [
+                'id' => '',
                 'label' => '#',
                 'class' => 'text-center',
             ],
             'email' => [
+                'id' => '',
                 'label' => 'Email',
                 'class' => '',
             ],
             'login' => [
+                'id' => '',
                 'label' => 'Login',
                 'class' => '',
             ],
             'actions' => [
+                'id' => '',
                 'label' => 'Действия',
                 'class' => 'text-center',
                 'buttons' => [

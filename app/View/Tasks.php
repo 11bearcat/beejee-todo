@@ -27,11 +27,13 @@ class Tasks extends Main
                 'label' => 'Статус',
                 'class' => '',
                 'transform' => function($item){
-                    if ($item['status'] == 1) {
-                        return '<span class="label label-success">Выполнен</span>';
-                    } else {
-                        return '<span class="label label-warning">В ожидании</span>';
-                    }
+                    $value = $item['status'] == 1
+                        ? "<span class='label label-success'>Выполнен</span> "
+                        : "<span class='label label-warning'>В ожидании</span>";
+                    $value .= $item['edited']
+                        ? "<br><span class='label label-primary'>Отредактировано администратором</span>"
+                        : '';
+                    return $value;
                 }
             ],
             'description' => [
