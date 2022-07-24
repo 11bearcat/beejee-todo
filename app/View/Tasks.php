@@ -35,10 +35,12 @@ class Tasks extends Main
                 }
             ],
             'description' => [
+                'id' => 'description',
                 'label' => 'Описание задачи',
                 'class' => '',
             ],
             'actions' => [
+                'id' => 'actions',
                 'label' => 'Действия',
                 'class' => 'text-center',
                 'buttons' => [

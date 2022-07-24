@@ -96,11 +96,11 @@ class Base
             <script>
                 $(document).ready( function () {
                     let orderData = [
-	                    [0, '<?= $_GET['sortColumn'] === 'id' ? $_GET['sortBy'] : '' ?>'],
-	                    [1, '<?= $_GET['sortColumn'] === 'title' ? $_GET['sortBy'] : '' ?>'],
-	                    [2, '<?= $_GET['sortColumn'] === 'email' ? $_GET['sortBy'] : '' ?>'],
-	                    [3, '<?= $_GET['sortColumn'] === 'status' ? $_GET['sortBy'] : '' ?>'],
-                    ]
+	                    [0, '<?= array_key_exists('sortColumn', $_GET) && $_GET['sortColumn'] === 'id' ? $_GET['sortBy'] : '' ?>'],
+	                    [1, '<?= array_key_exists('sortColumn', $_GET) && $_GET['sortColumn'] === 'title' ? $_GET['sortBy'] : '' ?>'],
+	                    [2, '<?= array_key_exists('sortColumn', $_GET) && $_GET['sortColumn'] === 'email' ? $_GET['sortBy'] : '' ?>'],
+	                    [3, '<?= array_key_exists('sortColumn', $_GET) && $_GET['sortColumn'] === 'status' ? $_GET['sortBy'] : '' ?>'],
+                    ];
                     $('#myTable').DataTable({
                         "paging":   false,
                         "info":     false,
@@ -109,22 +109,22 @@ class Base
 
 	                $('#id').on('click', (e) => {
 		                e.preventDefault()
-		                setSortParams('id', '<?= $_GET['sortBy'] === 'asc' ? 'desc' : 'asc' ?>')
+		                setSortParams('id', '<?= array_key_exists('sortBy', $_GET) && $_GET['sortBy'] === 'asc' ? 'desc' : 'asc' ?>')
 	                })
 
                     $('#title').on('click', (e) => {
 	                    e.preventDefault()
-	                    setSortParams('title', '<?= $_GET['sortBy'] === 'asc' ? 'desc' : 'asc' ?>')
+	                    setSortParams('title', '<?= array_key_exists('sortBy', $_GET) && $_GET['sortBy'] === 'asc' ? 'desc' : 'asc' ?>')
                     })
 
 	                $('#email').on('click', (e) => {
                         e.preventDefault()
-                        setSortParams('email', '<?= $_GET['sortBy'] === 'asc' ? 'desc' : 'asc' ?>')
+                        setSortParams('email', '<?= array_key_exists('sortBy', $_GET) && $_GET['sortBy'] === 'asc' ? 'desc' : 'asc' ?>')
 	                })
 
 	                $('#status').on('click', (e) => {
                         e.preventDefault()
-                        setSortParams('status', '<?= $_GET['sortBy'] === 'asc' ? 'desc' : 'asc' ?>')
+                        setSortParams('status', '<?= array_key_exists('sortBy', $_GET) && $_GET['sortBy'] === 'asc' ? 'desc' : 'asc' ?>')
 	                })
                 } );
 

@@ -112,6 +112,7 @@ class TaskModel
      */
     public function update($id, $data)
     {
+        $currentTask = $this->getTaskById($id);
         $stmt = $this->pdo->prepare("
                 UPDATE
                     `tasks`
@@ -131,6 +132,20 @@ class TaskModel
             ':status' => isset($data['status']) ? 1 : 0,
             ':id' => $id,
         ]);
+
+        if ($currentTask['description'] != $data['description']) {
+            $this->pdo->prepare("
+                UPDATE
+                    `tasks`
+                SET
+                    `edited` = :edited
+                WHERE
+                    `id` = :id
+            ")->execute([
+                ':edited' => 1,
+                ':id' => $id
+            ]);
+        }
     }
 
     /**
