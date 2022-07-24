@@ -1,20 +1,33 @@
 <?php
 
-
 namespace App\Model;
 
 use App\Service\DB;
+use PDO;
 
+/**
+ * Class UserModel
+ * @package App\Model
+ */
 class UserModel
 {
+    /**
+     * @var PDO|null
+     */
+    private ?PDO $pdo;
 
-    private $pdo;
-
+    /**
+     * UserModel constructor.
+     */
     public function __construct()
     {
         $this->pdo = DB::get();
     }
 
+    /**
+     * @param  string  $login
+     * @param  string  $password
+     */
     public function auth(string $login, string $password)
     {
         $stmt = $this->pdo->prepare("
@@ -39,6 +52,9 @@ class UserModel
         }
     }
 
+    /**
+     * @return array
+     */
     public function getUsers()
     {
         $stmt = $this->pdo->prepare("
@@ -52,6 +68,9 @@ class UserModel
         return $stmt->fetchAll();
     }
 
+    /**
+     * @param $data
+     */
     public function create($data)
     {
         $stmt = $this->pdo->prepare("
@@ -74,6 +93,11 @@ class UserModel
 
     }
 
+    /**
+     * @param $id
+     *
+     * @return mixed
+     */
     public function getUserById($id)
     {
         $stmt = $this->pdo->prepare("
@@ -91,6 +115,10 @@ class UserModel
         return $stmt->fetch();
     }
 
+    /**
+     * @param $id
+     * @param $data
+     */
     public function update($id, $data)
     {
         $stmt = $this->pdo->prepare("
@@ -112,6 +140,9 @@ class UserModel
         ]);
     }
 
+    /**
+     * @param $id
+     */
     public function delete($id)
     {
 

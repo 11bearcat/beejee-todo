@@ -1,22 +1,40 @@
 <?php
 
-
 namespace App\Model;
 
-
 use App\Service\DB;
+use PDO;
+use PDOStatement;
 
+/**
+ * Class TaskModel
+ * @package App\Model
+ */
 class TaskModel
 {
 
-    private $pdo;
+    /**
+     * @var PDO|null
+     */
+    private ?PDO $pdo;
 
+    /**
+     * TaskModel constructor.
+     */
     public function __construct()
     {
         $this->pdo = DB::get();
     }
 
-    public function getTasks($offset, $sizePage, $orderColumn = 'id', $orderBy = 'ASC')
+    /**
+     * @param $offset
+     * @param $sizePage
+     * @param  string  $orderColumn
+     * @param  string  $orderBy
+     *
+     * @return array
+     */
+    public function getTasks($offset, $sizePage, $orderColumn = 'id', $orderBy = 'ASC'): array
     {
         $stmt = $this->pdo->prepare("
             SELECT
@@ -34,6 +52,11 @@ class TaskModel
         return $stmt->fetchAll();
     }
 
+    /**
+     * @param $id
+     *
+     * @return mixed
+     */
     public function getTaskById($id)
     {
         $pdo = DB::get();
@@ -53,6 +76,11 @@ class TaskModel
         return $stmt->fetch();
     }
 
+    /**
+     * @param  array  $data
+     *
+     * @return false|PDOStatement
+     */
     public function create(Array $data)
     {
         $stmt = $this->pdo->prepare("
@@ -78,7 +106,11 @@ class TaskModel
         return $stmt;
     }
 
-    public function update($id, $data) 
+    /**
+     * @param $id
+     * @param $data
+     */
+    public function update($id, $data)
     {
         $stmt = $this->pdo->prepare("
                 UPDATE
@@ -101,6 +133,9 @@ class TaskModel
         ]);
     }
 
+    /**
+     * @param $id
+     */
     public function delete($id)
     {
         $stmt = $this->pdo->prepare("
@@ -113,7 +148,10 @@ class TaskModel
             ':id' => $id
         ]);
     }
-    
+
+    /**
+     * @return false|float
+     */
     public function count()
     {
         $stmt = $this->pdo->prepare("
