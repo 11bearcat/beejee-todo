@@ -12,12 +12,14 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./:/var/www/project
+      - './:/var/www/project'
 
   mysql:
     build:
       context: ./docker/mysql
     platform: linux/x86_64
+    volumes:
+      - './mysql/data:/var/lib/mysql'
     environment:
       - MYSQL_ROOT_PASSWORD=root
     ports:
