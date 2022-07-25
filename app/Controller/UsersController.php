@@ -37,7 +37,7 @@ class UsersController extends BaseController
 
             if (! $errors) {
                 $this->model->create($_POST);
-                header('Location: /users');
+                header('Location: /admin/users');
                 return;
             }
         }
@@ -58,7 +58,7 @@ class UsersController extends BaseController
         if ($_POST && ! $errors) {
             $this->model->update($_GET['id'], $_POST);
 
-            header('Location: /users');
+            header('Location: /admin/users');
             return;
         }
 
@@ -75,7 +75,7 @@ class UsersController extends BaseController
     public function runDelete()
     {
         $this->model->delete($_GET['id']);
-        header('Location: /users');
+        header('Location: /admin/users');
     }
 
     public function checkData($data): array

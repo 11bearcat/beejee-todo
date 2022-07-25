@@ -30,12 +30,12 @@ class Users extends Main
                     'update' => [
                         'icon' => 'fa-pencil',
                         'label' => 'Редактировать',
-                        'route' => '/users/update',
+                        'route' => '/admin/users/update',
                     ],
                     'delete' => [
                         'icon' => 'fa-trash',
                         'label' => 'Удалить',
-                        'route' => '/users/delete',
+                        'route' => '/admin/users/delete',
                     ],
                 ],
             ],
