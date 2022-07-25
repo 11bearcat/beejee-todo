@@ -2,7 +2,9 @@
 
 namespace App\View\Users;
 
-class Form extends \App\View\Main
+use App\View\Main;
+
+class Form extends Main
 {
     public function content($data = [])
     {
@@ -28,7 +30,7 @@ class Form extends \App\View\Main
                             }
                         }
                     ?>
-                    <form class="form-horizontal push-10-t" action="<?= isset($data['isUpdate']) ? '/users/update?id=' . $data['isUpdate'] : '/users/add' ?>" method="post">
+                    <form class="form-horizontal push-10-t" action="<?= isset($data['isUpdate']) ? '/admin/users/update?id=' . $data['isUpdate'] : '/admin/users/add' ?>" method="post">
                         <div class="form-group">
                             <div class="col-xs-9">
                                 <div class="form-material">
